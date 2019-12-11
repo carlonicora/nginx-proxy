@@ -9,6 +9,7 @@
 #        root /var/www/certbot;
 #    }
 #}
+#AFTER GETTING THE CERTIFICATE UNCOMMENT THIS
 #server {
 #    listen 443 ssl;
 #    server_name ${SERVERNAME};

@@ -1,8 +1,8 @@
-version: '3.5'
+version: '3.7'
 
 services:
-  proxy:
-    container_name: proxy-nginx
+  nginx:
+    container_name: nginx
     image: carlonicora/nginx-alpine:1.17
     restart: always
     build:
@@ -21,7 +21,9 @@ services:
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
     image: certbot/certbot
-    restart: unless-stopped
+    restart: always
+    networks:
+      - carlonicora
     volumes:
       - ./data/certbot/conf:/etc/letsencrypt:delegated
       - ./data/certbot/www:/var/www/certbot:delegated
